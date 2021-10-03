@@ -15,9 +15,9 @@ export default function appReducer(state = {}, action) {
     case ADD_QUESTION:
       return {
         ...state,
-        [state.action.deckID]: {
-          ...state.action.deckID,
-          questions: [action.question, ...state.action.deckID, questions],
+        [action.deckID]: {
+          ...state[action.deckID],
+          questions: [action.question, ...state[action.deckID].questions],
         },
       };
 

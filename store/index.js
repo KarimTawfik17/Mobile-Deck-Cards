@@ -1,4 +1,6 @@
 import { createStore } from "redux";
+import middlewares from "./middleware";
 import appReducer from "./reducers";
 
-export const store = createStore(appReducer);
+const store = createStore(appReducer, middlewares);
+export default store;
