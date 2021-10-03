@@ -1,25 +1,9 @@
-import { ADD_DECK } from "../actions/addDeck";
-import { ADD_QUESTION } from "../actions/addQuestion";
-import { REMOVE_DECK } from "../actions/removeDeck";
+import { UPDATE_DECKS } from "../actions/updateDeck";
 
 export default function appReducer(state = {}, action) {
   switch (action.type) {
-    case ADD_DECK:
-      return {
-        ...state,
-        [action.deck.id]: action.deck,
-      };
-    case REMOVE_DECK:
-      const { [action.id]: value, ...newState } = state;
-      return newState;
-    case ADD_QUESTION:
-      return {
-        ...state,
-        [action.deckID]: {
-          ...state[action.deckID],
-          questions: [action.question, ...state[action.deckID].questions],
-        },
-      };
+    case UPDATE_DECKS:
+      return action.decks;
 
     default:
       return state;
