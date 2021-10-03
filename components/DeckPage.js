@@ -8,16 +8,27 @@ function DeckPage(props) {
   const dispatch = useDispatch();
 
   function handleDelete() {
-    dispatch(handleRemoveDeckAction(deck.id));
-    props.navigation.navigate("Decks");
+    dispatch(
+      handleRemoveDeckAction(deck.id, () => props.navigation.navigate("Decks"))
+    );
   }
+
+  function handleAddCard() {
+    props.navigation.navigate("NewCard", { deck });
+  }
+
+  function handleStartQuiz() {
+    props.navigation.navigate("Quiz", { id: deck.id });
+  }
+
+  console.log("DECK PAGE RERAN WITH FOLLOWING PROPS :", props);
 
   return (
     <View style={{ padding: 50 }}>
       <Text>DeckTitle : {deck.title}</Text>
       <Text>No. Cards : {deck.questions.length}</Text>
-      <Button title="Add Card" />
-      <Button title="Start Quiz" />
+      <Button title="Add Card" onPress={handleAddCard} />
+      <Button title="Start Quiz" onPress={handleStartQuiz} />
       <Button title="Delete Deck" onPress={handleDelete} />
     </View>
   );

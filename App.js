@@ -12,6 +12,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DeckPage from "./components/DeckPage";
+import AddCard from "./components/AddCard";
+import Quiz from "./components/Quiz";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,16 +21,18 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Tabs.Navigator>
           <Tabs.Screen name="Decks" component={AllDecks} />
           <Tabs.Screen name="Add Deck" component={NewDeck} />
         </Tabs.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Decks" component={AllDecks} />
           <Stack.Screen name="Deck" component={DeckPage} />
+          <Stack.Screen name="NewCard" component={AddCard} />
+          <Stack.Screen name="Quiz" component={Quiz} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

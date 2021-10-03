@@ -1,11 +1,11 @@
 import updateDecksAction from "./updateDeck";
 import { addQuestionAsync } from "../../utils/asyncStorage";
 
-function handleAddQuestionAction(question) {
+function handleAddQuestionAction(id, question, cb) {
   return (dispatch) => {
-    addQuestionAsync(question).then((decks) =>
-      dispatch(updateDecksAction(decks))
-    );
+    addQuestionAsync(id, question)
+      .then((decks) => dispatch(updateDecksAction(decks)))
+      .then(cb);
   };
 }
 
