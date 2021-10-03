@@ -10,11 +10,11 @@ function AllDecks() {
   const dispatch = useDispatch();
 
   const decks = useSelector((state) => formatDecks(state));
-  useEffect(() => dispatch(handleReceiveDecksAction()), dispatch);
+  useEffect(() => dispatch(handleReceiveDecksAction()), [dispatch]);
   return (
     <View>
       {decks.map((deck) => (
-        <Deck {...deck} />
+        <Deck key={deck.id} {...deck} />
       ))}
     </View>
   );
