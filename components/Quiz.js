@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, Text, View } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import Question from "./Question";
-
+import { StyleSheet } from "react-native";
+import Result from "./Result";
 function Quiz({
   navigation,
   route: {
@@ -24,37 +25,59 @@ function Quiz({
     setIndex((index) => index + 1);
   }
 
-  if (data.length === 0) {
-    return <Text>There's no Cards in this Deck</Text>;
-  }
-
   if (index >= data.length) {
     return (
-      <View>
-        <Text>Your Score is : </Text>
-        <Text>
-          {score} out of {data.length}
-        </Text>
-      </View>
+      <Result navigation={navigation} answered={score} all={data.length} />
     );
   }
 
   return (
-    <View>
-      <Text>Quiz</Text>
-      <Question {...currentQuestion} current={index + 1} limit={data.length} />
-      <Button
-        title="Correct"
-        style={{ backgroundColor: "#0f0" }}
-        onPress={handleCorrect}
-      />
-      <Button
-        title="Incorrect"
-        style={{ backgroundColor: "#f00" }}
-        onPress={handleIncorrect}
-      />
+    <View style={styles.container}>
+      <Text style={styles.progress}>
+        {index + 1} / {data.length} Questions
+      </Text>
+      <Question {...currentQuestion} />
+      <View style={styles.btnContainer}>
+        <TouchableOpacity
+          style={{ backgroundColor: "#008000", borderRadius: 10 }}
+          onPress={handleCorrect}
+        >
+          <Text style={styles.btn}>Correct</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ backgroundColor: "#d4271b", borderRadius: 10 }}
+          onPress={handleIncorrect}
+        >
+          <Text style={styles.btn}>Incorrect</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  container: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "space-between",
+    marginVertical: 30,
+    padding: 20,
+    backgroundColor: "#fff",
+  },
+  btn: {
+    fontSize: 27,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    color: "#fff",
+  },
+  progress: {
+    color: "#757575",
+    alignSelf: "flex-end",
+  },
+});
 
 export default Quiz;
