@@ -1,4 +1,10 @@
-import { TouchableOpacity, Text, TextInput, View } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import handleAddQuestionAction from "../store/actions/handleAddQuestion";
@@ -24,7 +30,7 @@ function AddCard(props) {
   }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Text style={styles.title}> Question : </Text>
       <TextInput
         style={styles.input}
@@ -38,7 +44,7 @@ function AddCard(props) {
           Submit
         </Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

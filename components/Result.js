@@ -1,20 +1,22 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-function Result({ navigation, answered, all }) {
+function Result({ restart, navigation, answered, all }) {
   const percentage = ((answered / all) * 100).toFixed(2);
-  function goHome() {
-    navigation.navigate("Decks");
-  }
   return (
     <View style={styles.container}>
       <Text style={[styles.title, { flex: 2 }]}>Your Score is : </Text>
       <Text style={[styles.title, { flex: 3, fontSize: 45 }]}>
         {percentage} %
       </Text>
-      <TouchableOpacity onPress={goHome}>
-        <Text style={styles.home}>All Decks</Text>
-      </TouchableOpacity>
+      <View style={styles.btnContainer}>
+        <TouchableOpacity onPress={restart}>
+          <Text style={styles.home}>Restart Quiz</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.home}>Back to Deck</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -31,6 +33,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 40,
     backgroundColor: "#fff",
+  },
+  btnContainer: {
+    // flexDirection: "row",
+    flex: 2,
+    justifyContent: "space-around",
   },
   home: { color: "#2196f3", fontSize: 22 },
 });

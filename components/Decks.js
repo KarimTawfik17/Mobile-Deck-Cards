@@ -8,7 +8,7 @@ const DecksTabs = createBottomTabNavigator();
 function Decks() {
   return (
     <DecksTabs.Navigator>
-      <DecksTabs.Screen name="Decks" component={DecksList} />
+      <DecksTabs.Screen name="All Decks" component={DecksList} />
       <DecksTabs.Screen name="Add Deck" component={NewDeck} />
     </DecksTabs.Navigator>
   );

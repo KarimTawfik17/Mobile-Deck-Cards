@@ -27,7 +27,15 @@ function Quiz({
 
   if (index >= data.length) {
     return (
-      <Result navigation={navigation} answered={score} all={data.length} />
+      <Result
+        restart={() => {
+          setScore(0);
+          setIndex(0);
+        }}
+        navigation={navigation}
+        answered={score}
+        all={data.length}
+      />
     );
   }
 
