@@ -9,7 +9,7 @@ function NewDeck({ navigation }) {
   function submitHandler() {
     dispatch(handleAddDeckAction(input));
     setInput("");
-    navigation.navigate("Home");
+    navigation.navigate("Decks");
   }
   return (
     <View>

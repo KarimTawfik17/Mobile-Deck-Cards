@@ -6,15 +6,14 @@ import { useDispatch } from "react-redux";
 import { formatDecks } from "../utils/helpers";
 import Deck from "./Deck";
 
-function AllDecks() {
+function AllDecks({ navigation }) {
   const dispatch = useDispatch();
-
   const decks = useSelector((state) => formatDecks(state));
   useEffect(() => dispatch(handleReceiveDecksAction()), [dispatch]);
   return (
     <View>
       {decks.map((deck) => (
-        <Deck key={deck.id} {...deck} />
+        <Deck key={deck.id} deck={deck} navigation={navigation} />
       ))}
     </View>
   );

@@ -1,11 +1,9 @@
 import updateDecksAction from "./updateDeck";
 import { removeDeckAsync } from "../../utils/asyncStorage";
 
-function handleRemoveDeckAction(question) {
+function handleRemoveDeckAction(id) {
   return (dispatch) => {
-    removeDeckAsync(question).then((decks) =>
-      dispatch(updateDecksAction(decks))
-    );
+    removeDeckAsync(id).then((decks) => dispatch(updateDecksAction(decks)));
   };
 }
 

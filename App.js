@@ -10,17 +10,26 @@ import handleReceiveDecksAction from "./store/actions/handleReceiveDecks";
 import NewDeck from "./components/NewDeck";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DeckPage from "./components/DeckPage";
 
 const Tabs = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Tabs.Navigator>
-          <Tabs.Screen name="Home" component={AllDecks} />
+          <Tabs.Screen name="Decks" component={AllDecks} />
           <Tabs.Screen name="Add Deck" component={NewDeck} />
         </Tabs.Navigator>
+      </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Decks" component={AllDecks} />
+          <Stack.Screen name="Deck" component={DeckPage} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
