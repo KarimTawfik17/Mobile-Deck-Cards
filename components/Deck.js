@@ -1,11 +1,11 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-function Deck({ id }) {
+function Deck({ title, questions }) {
   return (
-    <TouchableOpacity>
-      <Text>DeckTitle</Text>
-      <Text>No. Cards</Text>
+    <TouchableOpacity style={{ margin: 30 }}>
+      <Text>DeckTitle : {title}</Text>
+      <Text>No. Cards : questions length</Text>
     </TouchableOpacity>
   );
 }

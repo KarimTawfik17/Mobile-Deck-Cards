@@ -1,15 +1,28 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Provider, useDispatch } from "react-redux";
 import AllDecks from "./components/AllDecks";
 import handleAddDeckAction from "./store/actions/handleAddDeck";
 import { addDeckAsync, removeDeckAsync } from "./utils/asyncStorage";
+import store from "./store/";
+import handleReceiveDecksAction from "./store/actions/handleReceiveDecks";
+import NewDeck from "./components/NewDeck";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+
+const Tabs = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <AllDecks />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tabs.Navigator>
+          <Tabs.Screen name="Home" component={AllDecks} />
+          <Tabs.Screen name="Add Deck" component={NewDeck} />
+        </Tabs.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
@@ -22,7 +35,6 @@ const styles = StyleSheet.create({
   },
 });
 
-import store from "./store/";
 // import addDeckAction from "./store/actions/addDeck";
 // import addQusetionAction from "./store/actions/addQuestion";
 // import removeDeckAction from "./store/actions/removeDeck";
@@ -66,4 +78,4 @@ import store from "./store/";
 // addDeckAsync("First Deck").then((x) => console.log("res,", x));
 // removeDeckAsync("f5134g4ieao8cs0z9q6edg").then((x) => console.log("res,", x));
 
-store.dispatch(handleAddDeckAction("hiiii"));
+// store.dispatch(handleAddDeckAction("hiiii"));

@@ -14,7 +14,10 @@ export function addDeckAsync(title) {
   const id = generateID();
   return getDecksAsync()
     .then((decks) => {
-      return { ...decks, [id]: { id, title, timeStamp: new Date().getTime() } };
+      return {
+        ...decks,
+        [id]: { id, title, timeStamp: new Date().getTime(), questions: [] },
+      };
     })
     .then((newDecks) => {
       AsyncStorage.setItem(DECKS_KEY, JSON.stringify(newDecks));
