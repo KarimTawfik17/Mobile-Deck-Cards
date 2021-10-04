@@ -10,7 +10,6 @@ export function getDecksAsync() {
 }
 
 export function addDeckAsync(title) {
-  console.log("add deck async");
   const id = generateID();
   return getDecksAsync()
     .then((decks) => {
