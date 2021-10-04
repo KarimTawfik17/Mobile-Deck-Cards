@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import { useSelector } from "react-redux";
 import handleReceiveDecksAction from "../store/actions/handleReceiveDecks";
 import { useDispatch } from "react-redux";
@@ -12,9 +12,13 @@ function DecksList({ navigation }) {
   useEffect(() => dispatch(handleReceiveDecksAction()), [dispatch]);
   return (
     <View>
-      {decks.map((deck) => (
-        <Deck key={deck.id} deck={deck} navigation={navigation} />
-      ))}
+      <FlatList
+        data={decks}
+        // keyExtractor={(deck) => deck.id}
+        renderItem={({ item: deck }) => (
+          <Deck key={deck.id} deck={deck} navigation={navigation} />
+        )}
+      />
     </View>
   );
 }

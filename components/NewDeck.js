@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, Text, TextInput, View } from "react-native";
+import { TouchableOpacity, Text, TextInput, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import handleAddDeckAction from "../store/actions/handleAddDeck";
 import { StyleSheet } from "react-native";
@@ -14,7 +14,7 @@ function NewDeck({ navigation }) {
     navigation.navigate("All Decks");
   }
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>What is the Deck's Title ? </Text>
       <TextInput style={styles.input} value={input} onChangeText={setInput} />
       <TouchableOpacity onPress={submitHandler} disabled={disabled}>
@@ -22,7 +22,7 @@ function NewDeck({ navigation }) {
           Submit
         </Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
