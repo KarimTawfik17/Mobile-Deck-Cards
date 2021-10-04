@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from "../utils/asyncNotifications";
 
 function Result({ restart, navigation, answered, all }) {
+  useEffect(() => {
+    clearLocalNotification().then(setLocalNotification);
+  }, [clearLocalNotification, setLocalNotification]);
   const percentage = ((answered / all) * 100).toFixed(2);
   return (
     <View style={styles.container}>

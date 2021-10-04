@@ -11,7 +11,7 @@ function NewDeck({ navigation }) {
   function submitHandler() {
     dispatch(handleAddDeckAction(input));
     setInput("");
-    navigation.navigate("Decks");
+    navigation.navigate("All Decks");
   }
   return (
     <View style={styles.container}>
