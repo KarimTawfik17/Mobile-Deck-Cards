@@ -13,47 +13,6 @@ function createNotification() {
   };
 }
 
-// export function getPermission() {
-//   return Notifications.requestPermissionsAsync()
-//     .then((response) => response.status)
-//     .then((status) => {
-//       if (status === "undetermined") {
-//         return Notifications.requestPermissionsAsync().then(
-//           ({ status }) => status
-//         );
-//       }
-//       return status;
-//     });
-// }
-
-// export function getToday() {
-//   return AsyncStorage.getItem(DECKS_KEY).then((res) => {
-//     return res ? JSON.parse(res) : {};
-//   });
-// }
-
-// export function setNotificationForTomorrow() {
-//   const today = new Date();
-//   const tomorrow = new Date(today);
-//   tomorrow.setDate(tomorrow.getDate() + 1);
-//   tomorrow.setHours(20, 0, 0);
-
-//   Notifications.cancelAllScheduledNotificationsAsync().then(() => {
-//     Notifications.scheduleNotificationAsync({
-//       content: {
-//         title: "Study Time",
-//         body: "It's Time to solve some quizes !!",
-//         sound: true,
-//         priority: "high",
-//       },
-//       trigger: {
-//         seconds: 60 * 60 * 24,
-//         repeats: true,
-//       },
-//     });
-//   });
-// }
-
 export function setLocalNotification() {
   return AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
@@ -85,13 +44,3 @@ export function clearLocalNotification() {
     Notifications.cancelAllScheduledNotificationsAsync
   );
 }
-
-// Notifications.setNotificationHandler({
-//   handleNotification: async () => ({
-//     shouldShowAlert: true,
-//     shouldPlaySound: true,
-//     shouldSetBadge: false,
-//   }),
-// });
-
-// Notifications.getPermissionsAsync().then((x) => console.log("res is : ", x));

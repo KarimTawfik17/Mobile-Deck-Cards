@@ -12,7 +12,7 @@ function NewDeck({ navigation }) {
 
   function submitHandler() {
     const newDeck = createDeck(input);
-    // console.log({ [newDeck.id]: newDeck });
+
     dispatch(
       handleAddDeckAction(newDeck, () => {
         setInput("");
