@@ -9,19 +9,23 @@ export function getDecksAsync() {
   });
 }
 
-export function addDeckAsync(title) {
-  const id = generateID();
+export function addDeckAsync(newDeck) {
   return getDecksAsync()
     .then((decks) => {
       return {
         ...decks,
-        [id]: { id, title, timeStamp: new Date().getTime(), questions: [] },
+        [newDeck.id]: newDeck,
       };
     })
     .then((newDecks) => {
       AsyncStorage.setItem(DECKS_KEY, JSON.stringify(newDecks));
       return newDecks;
     });
+}
+
+export function createDeck(title) {
+  const id = generateID();
+  return { id, title, timeStamp: new Date().getTime(), questions: [] };
 }
 
 export function removeDeckAsync(id) {

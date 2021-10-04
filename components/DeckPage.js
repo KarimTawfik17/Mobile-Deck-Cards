@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import handleRemoveDeckAction from "../store/actions/handleRemoveDeck";
 import { StyleSheet } from "react-native";

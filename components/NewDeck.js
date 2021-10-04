@@ -3,15 +3,22 @@ import { TouchableOpacity, Text, TextInput, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import handleAddDeckAction from "../store/actions/handleAddDeck";
 import { StyleSheet } from "react-native";
+import { createDeck } from "../utils/asyncStorage";
 
 function NewDeck({ navigation }) {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const disabled = input.trim() === "";
+
   function submitHandler() {
-    dispatch(handleAddDeckAction(input));
-    setInput("");
-    navigation.navigate("All Decks");
+    const newDeck = createDeck(input);
+    // console.log({ [newDeck.id]: newDeck });
+    dispatch(
+      handleAddDeckAction(newDeck, () => {
+        setInput("");
+        navigation.navigate("Deck", { id: newDeck.id });
+      })
+    );
   }
   return (
     <ScrollView contentContainerStyle={styles.container}>
