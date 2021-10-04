@@ -1,9 +1,9 @@
 # Mobile Deck-Cards app
 
 This is the one of the project featured in Udacity's React Developer Nano-degree program
-focused specially on React Native .
+focused specially on React Native.
 
-## The App has been successfully testes on both android and ios real devices
+### The App has been successfully tested on Both android and IOS real devices.
 
 ## Installation
 
